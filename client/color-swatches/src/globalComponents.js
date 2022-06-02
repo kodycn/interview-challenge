@@ -11,6 +11,7 @@ import {
   BNav,
   BNavbar,
   BNavItem,
+  BPagination,
   BRow
 } from 'bootstrap-vue'
 
@@ -25,4 +26,5 @@ Vue.component('b-form-textarea', BFormTextarea)
 Vue.component('b-nav', BNav)
 Vue.component('b-navbar', BNavbar)
 Vue.component('b-nav-item', BNavItem)
+Vue.component('b-pagination', BPagination)
 Vue.component('b-row', BRow)

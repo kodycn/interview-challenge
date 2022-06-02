@@ -1,11 +1,9 @@
 <template>
-  <b-card no-body>
-    <div class="swatch" :style=backgroundColor></div>
-    <b-card-text>
-      <b>Color</b>
+  <b-card no-body class="swatch" align="left">
+    <div class="swatchColor" :style=backgroundColor></div>
+    <b-card-text class="my-2 ml-3">
       {{ swatch.color }}
     </b-card-text>
-
   </b-card>
 </template>
 
@@ -33,8 +31,16 @@ export default {
 </script>
 
 <style scoped>
-.swatch {
-  height: 200px;
+.swatchColor {
+  height: 10rem;
   width: auto;
+  border-radius: 5% 5% 0 0;
+}
+.swatch {
+  margin: 0.5rem 1rem;
+}
+.card {
+  border-radius: 5%;
+  box-shadow: 0px 0px 1px grey;
 }
 </style>
