@@ -1,16 +1,14 @@
 <template>
   <div id="app">
     <TopNavbar />
-    <div class="d-flex">
-      <SideNavbar />
-      <router-view />
-    </div>
+    <SideNavbar />
+    <router-view class="main"/>
   </div>
 </template>
 
 <script>
-import TopNavbar from '@/components/TopNavbar.vue'
-import SideNavbar from '@/components/SideNavbar.vue'
+import TopNavbar from '@/components/TopNavbar.vue';
+import SideNavbar from '@/components/SideNavbar.vue';
 
 export default {
   props: {
@@ -20,12 +18,11 @@ export default {
     SideNavbar
   },
   name: 'App'
-}
+};
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
-@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
 #app {
   font-family: 'Source Serif Pro', Helvetica, Arial, sans-serif;
@@ -33,5 +30,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #363c3c;
+}
+
+.main {
+  margin-left: 200px;
+  margin-top: 5%;
 }
 </style>

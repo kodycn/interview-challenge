@@ -16,7 +16,7 @@ app.use('/api/swatches', posts);
 
 // Welcome message
 app.get('/', (req, res) => {
-  res.send('Hello to Recipe API');
+  res.send('Hello to Color Swatches API');
 });
 
 // mongodb

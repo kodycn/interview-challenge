@@ -11,6 +11,30 @@ export const getSwatches = async (req, res) => {
   }
 }
 
+export const getSwatch = async (req, res) => {
+  const { id } = req.params;
+
+  if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No swatch exists with id: ${id}`);
+
+  try {
+    const swatch = await Swatch.find({_id: id});
+    res.status(200).json(swatch);
+  } catch(error) {
+    res.status(404).json({ message: error.message });
+  }
+
+}
+
+export const getRandomSwatch = async (req, res) => {
+
+  try {
+    const swatch = await Swatch.aggregate([{ $sample : { size: 1 }}]);
+    res.status(200).json(swatch);
+  } catch(error) {
+    res.status(404).json({ message: error.message });
+  }
+
+}
 export const createSwatch = async (req, res) => {
   const post = req.body;
 

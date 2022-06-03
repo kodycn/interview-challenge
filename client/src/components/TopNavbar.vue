@@ -1,7 +1,7 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand href="#">
-      <img :src="require('../../../public/logo-symbol.svg')" />
+    <b-navbar-brand href="/">
+      <img :src="require('@/assets/logo-symbol.svg')" />
     </b-navbar-brand>
     <b-navbar-nav class="ml-auto">
         <b-nav-form>
@@ -9,15 +9,4 @@
         </b-nav-form>
       </b-navbar-nav>
   </b-navbar>
-
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>

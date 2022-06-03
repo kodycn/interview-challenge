@@ -1,8 +1,14 @@
 <template>
   <div>
     <b-row>
-      <b-col lg="3" md="4" sm="12" v-for="(swatch, index) in swatchesPerPage" :key="index">
-        <Swatch :swatch="swatch"></Swatch>
+      <b-col
+        lg="3"
+        md="4"
+        sm="12"
+        v-for="(swatch, index) in swatchesPerPage"
+        :key="index"
+      >
+        <Swatch :swatch="swatch" :clickable="true"></Swatch>
       </b-col>
     </b-row>
     <b-pagination
@@ -19,9 +25,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
-import Swatch from '../components/Swatch.vue'
+import EventBus from '@/bus/EventBus';
+import Swatch from '@/components/Swatch.vue';
 
 export default {
   props: {
@@ -29,39 +36,46 @@ export default {
   components: {
     Swatch
   },
-  data () {
+  data() {
     return {
       swatches: [],
       currentPage: 1,
       perPage: 12
-    }
+    };
   },
-  created () {
-    this.axiosGet()
+  created() {
+    this.axiosGet();
+    EventBus.$on('get-random-color', this.getRandomColor);
   },
   computed: {
-    swatchesPerPage () {
+    swatchesPerPage() {
       return this.swatches.slice(
         (this.currentPage - 1) * this.perPage,
         this.currentPage * this.perPage
-      )
+      );
     },
-    getUrl () {
-      return `${this.$root.$data.host}/api/swatches/`
+    getUrl() {
+      console.log('this.$root.$data:', this.$root.$data);
+      return `${this.$root.$data.host}/`;
     },
-    totalRows () {
-      return this.swatches.length
+    totalRows() {
+      return this.swatches.length;
     }
   },
   methods: {
-    axiosGet () {
+    axiosGet() {
       axios.get(this.getUrl)
         .then((res) => {
-          this.swatches = res.data
-        })
+          this.swatches = res.data;
+        });
+    },
+    getRandomColor() {
+      const randomIndex = Math.floor(Math.random() * this.swatches.length);
+      const randomSwatch = this.swatches[randomIndex];
+      this.$router.push(`/${randomSwatch._id}`);
     }
   }
-}
+};
 </script>
 
 <style>

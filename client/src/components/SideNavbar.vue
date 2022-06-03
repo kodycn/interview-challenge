@@ -1,9 +1,8 @@
 <template>
   <b-nav vertical>
     <b-nav-form>
-      <b-button>Random Color</b-button>
+      <b-button @click="emitRandomColor()">Random Color</b-button>
     </b-nav-form>
-    <b-nav-item><router-link to="/">All Colors</router-link></b-nav-item>
     <b-nav-item disabled><router-link to="/red">Red</router-link></b-nav-item>
     <b-nav-item disabled><router-link to="/orange">Orange</router-link></b-nav-item>
     <b-nav-item disabled><router-link to="/yellow">Yellow</router-link></b-nav-item>
@@ -16,23 +15,15 @@
 </template>
 
 <script>
+import EventBus from '@/bus/EventBus';
 
 export default {
-  props: {
-  },
-  components: {
-  },
-  data () {
-    return {
-    }
-  },
-  created () {
-  },
-  computed: {
-  },
   methods: {
+    emitRandomColor() {
+      EventBus.$emit('get-random-color');
+    }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -44,10 +35,11 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 1rem 1rem;
-  width: auto;
+  width: 200px;
   text-align: left;
   background-color: #d6d8d8;
-  height: 95vh;
+  height: 90vh;
+  position: fixed;
 }
 li.nav-item {
   width: 10rem;
